@@ -1,5 +1,6 @@
 # Carpeta de modulos inicial
 En esta carpeta van los modulos por features segun la estructura
+--
 `
 /modulos/nombre_modulo/
 ├── acceso_datos/
@@ -9,4 +10,5 @@ En esta carpeta van los modulos por features segun la estructura
 ├── logica/
 │   └── nombre_service.py
 └── notificaciones/ (opcional)
+
 `
