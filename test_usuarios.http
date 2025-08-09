@@ -13,3 +13,20 @@ Content-Type: application/json
   "contrasena_hash": "1234567890",
   "fecha_registro": "2025-08-08",
 }
+
+###
+
+GET http://localhost:8000/usuario/1
+Accept: application/json
+
+
+###
+
+PUT http://localhost:8000/usuario/1
+Content-Type: application/json
+{
+  "nombre": "Juan",
+  "email": "slfd@ldkjfs.com",
+  "contrasena_hash": "1234567890",
+  "fecha_registro": "2025-08-08",
+}

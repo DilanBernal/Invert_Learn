@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const UserItem = ({ user }) => {
+const UserItem = ({ user, handleDeleteUser }) => {
   const [hoverCanBtn, setHoverCanBtn] = useState(false);
   const [hoverEditBtn, setHoverEditBtn] = useState(false);
+  const navigate = useNavigate();
+
+  const handleEditUser = () => {
+    navigate(`/edit-user/${user.usuario_id}`);
+  };
 
   return (
     <>
@@ -13,16 +19,13 @@ const UserItem = ({ user }) => {
             <strong>ID:</strong> {user.usuario_id}
           </span>
           <span>
-            <strong>NOMBRES:</strong>
-            {user.nombre}
+            <strong>NOMBRES:</strong> {user.nombre}
           </span>
           <span>
-            <strong>EMAIL:</strong>
-            {user.email}
+            <strong>EMAIL:</strong> {user.email}
           </span>
           <span>
-            <strong>MONEDA PREFERIDA:</strong>
-            {user.moneda_preferida}
+            <strong>MONEDA PREFERIDA:</strong> {user.moneda_preferida}
           </span>
         </div>
         <div className="col-1">
@@ -40,6 +43,7 @@ const UserItem = ({ user }) => {
             onPointerLeave={() => {
               setHoverCanBtn(false);
             }}
+            onClick={handleDeleteUser}
           >
             <i
               className={!hoverCanBtn ? "bi bi-trash3" : "bi bi-trash3-fill"}
@@ -62,6 +66,7 @@ const UserItem = ({ user }) => {
             onBlur={() => {
               setHoverEditBtn(false);
             }}
+            onClick={handleEditUser}
           >
             <i
               className={hoverEditBtn ? "bi bi-pencil-fill" : "bi bi-pencil"}

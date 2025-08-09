@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./Components/Header.jsx";
 import SignInScreen from "./Screens/SignInScreen.jsx";
 import UserListScreen from "./Screens/UserListScreen.jsx";
+import EditUserScreen from "./Screens/EditUserScreen.jsx";
 
 const RootLayout = () => {
   return (
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "user-list",
         element: <UserListScreen />,
+      },
+      {
+        path: "edit-user/:id",
+        element: <EditUserScreen />,
       },
     ],
   },

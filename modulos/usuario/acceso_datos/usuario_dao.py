@@ -31,53 +31,51 @@ class UsuarioDAOMySQL:
             for r in rows
         ]
 
-    def obtener_por_id(self, id: int):
+    async def obtener_por_id(self, id: int):
         with conn.cursor() as cursor:
             cursor.execute(
-                "SELECT usuario_id, nombre, email, contrasena_hash, fecha_registro, moneda_preferida FROM usuarios WHERE id = %s",
+                "SELECT usuario_id, nombre, email, contrasena_hash, fecha_registro, moneda_preferida FROM usuarios WHERE usuario_id = %s",
                 (id)
             )
             row = cursor.fetchone()
-        if row:
-            return UsuarioDTO(id=row[0], nombre=row[1], email=row[2], contrasena_hash=row[3], fecha_registro=row[4], moneda_preferida=row[5])
+            if row:
+                return UsuarioDTO(usuario_id=row[0], nombre=row[1], email=row[2], contrasena_hash=row[3], fecha_registro=row[4], moneda_preferida=row[5])
         return None
-    def obtener_por_email(self, email: str):
+    async def obtener_por_email(self, email: str):
         with conn.cursor() as cursor:
             cursor.execute(
                 "SELECT usuario_id, nombre, email, contrasena_hash, fecha_registro, moneda_preferida FROM usuarios WHERE email = %s",
-                (email,)
+                (email)
             )
             row = cursor.fetchone()
         if row:
             return UsuarioDTO(usuario_id=row[0], nombre=row[1], email=row[2], contrasena_hash=row[3], fecha_registro=row[4], moneda_preferida=row[5])
         return None
-    def actualizar(self, producto: UsuarioDTO):
+    def actualizar(self, usuario: UsuarioDTO):
         with conn.cursor() as cursor:
             cursor.execute(
                 """
                 UPDATE usuarios
-                SET nombre=%s, email=%s, contrasena_hash=%s, fecha_registro=%s, moneda_preferida=%s
+                SET nombre=%s, email=%s, contrasena_hash=%s, moneda_preferida=%s
                 WHERE usuario_id = %s
                 """,
-                (producto.nombre,
-                 producto.email,
-                 producto.contrasena_hash,
-                 producto.fecha_registro,
-                 producto.moneda_preferida,
-                 producto.usuario_id)
+                (usuario.nombre,
+                 usuario.email,
+                 usuario.contrasena_hash,
+                 usuario.moneda_preferida,
+                 usuario.usuario_id)
             )
+            filas_afectadas = cursor.rowcount
         conn.commit()
-
+        return filas_afectadas
     def eliminar(self, id: int):
         with conn.cursor() as cursor:
             cursor.execute(
                 "DELETE FROM usuarios WHERE usuario_id = %s",
-                (id,)
+                (id)
             )
         conn.commit()
 
 
-# Para Postgres podrías copiar exactamente la misma clase y llamarla ProductoDAOPostgres,
-# ya que psycopg2 usa también %s, o incluso usar esta misma si tu ConexionDB ya abstrae ambos.
 class ProductoDAOPostgres(UsuarioDAOMySQL):
     pass

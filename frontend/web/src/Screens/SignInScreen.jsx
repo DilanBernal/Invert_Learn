@@ -151,7 +151,7 @@ const SignInScreen = () => {
           </label>
         </div>
         <button type="submit" className="btn btn-primary">
-          Iniciar sesión
+          Registrar Usuario
         </button>
       </form>
     </div>
