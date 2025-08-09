@@ -41,7 +41,16 @@ class UsuarioDAOMySQL:
         if row:
             return UsuarioDTO(id=row[0], nombre=row[1], email=row[2], contrasena_hash=row[3], fecha_registro=row[4], moneda_preferida=row[5])
         return None
-
+    def obtener_por_email(self, email: str):
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "SELECT usuario_id, nombre, email, contrasena_hash, fecha_registro, moneda_preferida FROM usuarios WHERE email = %s",
+                (email,)
+            )
+            row = cursor.fetchone()
+        if row:
+            return UsuarioDTO(usuario_id=row[0], nombre=row[1], email=row[2], contrasena_hash=row[3], fecha_registro=row[4], moneda_preferida=row[5])
+        return None
     def actualizar(self, producto: UsuarioDTO):
         with conn.cursor() as cursor:
             cursor.execute(
