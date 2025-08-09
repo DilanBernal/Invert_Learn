@@ -1,3 +1,5 @@
+from fastapi.middleware.cors import CORSMiddleware
+from modulos.usuario.logic.usuario_service import router as usuario_router
 from fastapi import FastAPI, HTTPException, Query
 from typing import List, Optional
 from pydantic import BaseModel
@@ -85,6 +87,7 @@ def eliminar_gasto(transaccion_id: int):
     dto = service.obtener_gasto(transaccion_id)
     if not dto:
         raise HTTPException(status_code=404, detail="Gasto no encontrado")
-
     service.eliminar_gasto(transaccion_id)
     return {"status": "eliminado"}
+  
+app.include_router(usuario_router, prefix="/usuario")
