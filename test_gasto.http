@@ -1,0 +1,33 @@
+### Crear un gasto
+POST http://localhost:8000/gestion_gasto/
+Content-Type: application/json
+
+{
+  "usuario_id": 2,
+  "categoria": "Transporte",
+  "descripcion": "Didi",
+  "monto": 14.550
+}
+
+### Listar todos los gastos del usuario 1
+GET http://localhost:8000/gestion_gasto/?usuario_id=1
+
+### Obtener gasto con ID 6
+GET http://localhost:8000/gestion_gasto/3
+
+
+### Actualizar gasto con ID 1
+
+PUT http://localhost:8000/gestion_gasto/4
+Content-Type: application/json
+
+{
+  "usuario_id": 1,
+  "categoria": "Deportes",
+  "descripcion": "Guantes Rojos",
+  "monto": 150.000
+}
+
+
+### Eliminar gasto con ID 1
+DELETE http://localhost:8000/gestion_gasto/6
