@@ -1,7 +1,7 @@
 <script setup></script>
 <template>
   <header class="main-header">
-    <nav>
+    <nav class="navbar">
       <router-link to="/">Home</router-link> 
       <router-link to="/register-user">Crear Usuario</router-link> 
       <router-link to="/users-list">Lista de  Usuarios</router-link> 
@@ -17,6 +17,7 @@
   border-bottom: 2px solid whitesmoke;
   background-color: #212529;
   top: 0;
+  z-index: 20;
 }
 nav a{
   color: whitesmoke;
@@ -29,7 +30,16 @@ nav a:not(:last-child)::before{
   width: 2px;
   height: 100%;
   background-color: whitesmoke;
-  RIGHT: -20%;
+  RIGHT: -100%;
+  bottom: 0;
+  position: absolute;
+}
+nav a:not(:first-child)::after{
+  content: "";
+  width: 2px;
+  height: 100%;
+  background-color: whitesmoke;
+  left: -100%;
   bottom: 0;
   position: absolute;
 }

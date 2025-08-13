@@ -9,6 +9,13 @@ from modulos.gestion_gasto.logica.gestion_gasto_service import GastoService
 app = FastAPI(title="InvertLearn – Gestión de Gastos")
 service = GastoService()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins="*",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Schemas para validación y serialización ---
 

@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "electron": "vite & electron .",
+    "electronw": "start npm run dev && timeout 5 && electron .",
     "preview": "vite preview"
   },
   "dependencies": {

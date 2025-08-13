@@ -12,3 +12,8 @@ En esta carpeta van los modulos por features segun la estructura
 └── notificaciones/ (opcional)
 
 `
+
+### Codigo para iniciar el gateway:
+```
+python -m uvicorn gateway.main:app --reload
+```
