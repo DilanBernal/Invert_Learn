@@ -97,4 +97,5 @@ def eliminar_gasto(transaccion_id: int):
     service.eliminar_gasto(transaccion_id)
     return {"status": "eliminado"}
   
+  
 app.include_router(usuario_router, prefix="/usuario")

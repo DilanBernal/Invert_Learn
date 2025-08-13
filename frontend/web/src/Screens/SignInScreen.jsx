@@ -28,7 +28,7 @@ const SignInScreen = () => {
         );
         console.log(response);
         resetForm();
-        navigate("/");
+        navigate("/user-list");
       } catch (error) {
         if (error.response && error.response.status === 400) {
           alert("Error: " + error.response.data.detail);
