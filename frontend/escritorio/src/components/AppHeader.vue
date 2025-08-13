@@ -2,8 +2,9 @@
 <template>
   <header class="main-header">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/register-user">Crear Usuario</router-link>
+      <router-link to="/">Home</router-link> 
+      <router-link to="/register-user">Crear Usuario</router-link> 
+      <router-link to="/users-list">Lista de  Usuarios</router-link> 
     </nav>
   </header>
 </template>
@@ -16,5 +17,20 @@
   border-bottom: 2px solid whitesmoke;
   background-color: #212529;
   top: 0;
+}
+nav a{
+  color: whitesmoke;
+  text-decoration: none;
+  margin: 0 20px ;
+  position:relative;
+}
+nav a:not(:last-child)::before{
+  content: "";
+  width: 2px;
+  height: 100%;
+  background-color: whitesmoke;
+  RIGHT: -20%;
+  bottom: 0;
+  position: absolute;
 }
 </style>
